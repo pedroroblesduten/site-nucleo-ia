@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Centro de Pesquisa em I.A. no Brasil</title>
 
   <!-- React + ReactDOM via CDN -->
@@ -20,7 +21,9 @@
       --white: #ffffff;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -32,7 +35,7 @@
     .app-header {
       background: var(--primary-color);
       padding: 1rem 2rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -77,11 +80,11 @@
       margin: 0;
       padding: 0.5rem 0;
       border-radius: 4px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       min-width: 200px;
     }
 
-    .submenu li + li {
+    .submenu li+li {
       border-top: 1px solid #e0e0e0;
     }
 
@@ -92,6 +95,7 @@
       text-decoration: none;
       transition: background 0.2s, color 0.2s;
     }
+
     .menu-item {
       position: relative;
     }
@@ -120,6 +124,7 @@
     }
   </style>
 </head>
+
 <body>
   <div id="root"></div>
 
@@ -140,8 +145,13 @@
       {
         label: 'Pesquisa',
         items: ['Linhas de pesquisa', 'Projetos', 'Palavras-chave']
+      },
+      {
+        label: 'Contato',
+        items: []  // <-- novo item de menu
       }
     ];
+
 
     function App() {
       return (
@@ -184,4 +194,5 @@
     ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>
 </body>
+
 </html>
