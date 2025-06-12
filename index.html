@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Centro de Pesquisa em I.A. no Brasil</title>
+
+  <!-- React + ReactDOM via CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel para JSX no browser -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    :root {
+      --primary-color: #005b96;
+      --light-primary: #74b9ff;
+      --bg-color: #f5faff;
+      --text-color: #1a1a1a;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .app-header {
+      background: var(--primary-color);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .app-title {
+      color: var(--white);
+      margin: 0;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .menu-link {
+      position: relative;
+      display: inline-block;
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .menu-link:hover {
+      color: var(--light-primary);
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--white);
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 0;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      min-width: 200px;
+    }
+
+    .submenu li + li {
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .submenu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .menu-item {
+      position: relative;
+    }
+
+    .submenu a:hover {
+      background: var(--light-primary);
+      color: var(--white);
+    }
+
+    .menu-item:hover .submenu {
+      display: block;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--primary-color);
+      color: var(--white);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const menuConfig = [
+      {
+        label: 'Sobre',
+        items: ['Quem somos', 'Institucional', 'Pesquisadores', 'Associados']
+      },
+      {
+        label: 'Publicações',
+        items: ['Notas de Política Econômica', 'Working Papers', 'PNAD']
+      },
+      {
+        label: 'Códigos & Dados',
+        items: ['BRASMOD', 'GitHub']
+      },
+      {
+        label: 'Pesquisa',
+        items: ['Linhas de pesquisa', 'Projetos', 'Palavras-chave']
+      }
+    ];
+
+    function App() {
+      return (
+        <>
+          <header className="app-header">
+            <h1 className="app-title">
+              Centro de Pesquisa em I.A. no Brasil
+            </h1>
+            <nav>
+              <ul className="menu">
+                {menuConfig.map(section => (
+                  <li key={section.label} className="menu-item">
+                    <a href="#" className="menu-link">
+                      {section.label} ↓
+                    </a>
+                    <ul className="submenu">
+                      {section.items.map(sub => (
+                        <li key={sub}>
+                          <a href="#">{sub}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </header>
+
+          <main>
+            {/* Aqui você pode adicionar conteúdo principal: apresentações, projetos, etc. */}
+          </main>
+
+          <footer>
+            © 2025 Centro de Pesquisa em I.A. no Brasil
+          </footer>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
