@@ -2,196 +2,156 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Centro de Pesquisa em I.A. no Brasil</title>
-
-  <!-- React + ReactDOM via CDN -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <!-- Babel para JSX no browser -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <style>
-    :root {
-      --primary-color: #005b96;
-      --light-primary: #74b9ff;
-      --bg-color: #f5faff;
-      --text-color: #1a1a1a;
-      --white: #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-    }
-
-    .app-header {
-      background: var(--primary-color);
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .app-title {
-      color: var(--white);
-      margin: 0;
-      font-size: 1.8rem;
-      letter-spacing: 1px;
-    }
-
-    .menu {
-      list-style: none;
-      padding: 0;
-      margin: 0.75rem 0 0;
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .menu-link {
-      position: relative;
-      display: inline-block;
-      color: var(--white);
-      text-decoration: none;
-      font-weight: 600;
-      padding: 0.5rem;
-      transition: color 0.2s;
-    }
-
-    .menu-link:hover {
-      color: var(--light-primary);
-    }
-
-    .submenu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--white);
-      list-style: none;
-      margin: 0;
-      padding: 0.5rem 0;
-      border-radius: 4px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      min-width: 200px;
-    }
-
-    .submenu li+li {
-      border-top: 1px solid #e0e0e0;
-    }
-
-    .submenu a {
-      display: block;
-      padding: 0.5rem 1rem;
-      color: var(--primary-color);
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .menu-item {
-      position: relative;
-    }
-
-    .submenu a:hover {
-      background: var(--light-primary);
-      color: var(--white);
-    }
-
-    .menu-item:hover .submenu {
-      display: block;
-    }
-
-    main {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: var(--primary-color);
-      color: var(--white);
-      margin-top: 2rem;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Página Inicial – Núcleo de Estudos em I.A. e Sociedade</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="header-container"></div>
 
-  <script type="text/babel">
-    const menuConfig = [
+  <!-- Carrossel -->
+  <section class="carousel">
+    <div class="carousel-container">
+      <button class="carousel-btn left" aria-label="Anterior">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#003f5c" viewBox="0 0 24 24">
+          <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+        </svg>
+      </button>
+      <div class="carousel-slide" id="carousel-slide"></div>
+      <button class="carousel-btn right" aria-label="Próximo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#003f5c" viewBox="0 0 24 24">
+          <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <section class="about-core">
+    <div class="section-header">
+      <h2>O que fazemos</h2>
+      <p>Conheça as áreas de atuação e os pilares que estruturam nosso núcleo de pesquisa em inteligência artificial e
+        sociedade.</p>
+    </div>
+
+    <div class="highlight-grid">
+      <div class="highlight-box">
+        <h3>Linhas de Pesquisa</h3>
+        <p>Estudamos o impacto da IA nas políticas públicas, equidade social e regulação algorítmica.</p>
+      </div>
+      <div class="highlight-box">
+        <h3>Produção Técnica</h3>
+        <p>Publicamos artigos, notas técnicas e relatórios voltados à sociedade e à formulação de políticas.</p>
+      </div>
+      <div class="highlight-box">
+        <h3>Dados & Códigos</h3>
+        <p>Desenvolvemos ferramentas e conjuntos de dados abertos para garantir transparência e reprodutibilidade.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="news-preview">
+    <h2>Últimas Notícias</h2>
+    <div class="news-cards">
+      <div class="news-card">
+        <h3>Relatório sobre IA e Sociedade</h3>
+        <p>Análise dos impactos sociais da IA no Brasil.</p>
+        <a class="read-more" href="noticias/relatorio-ia.html">Leia mais &raquo;</a>
+      </div>
+      <div class="news-card">
+        <h3>Seminário: IA e Políticas Públicas</h3>
+        <p>Evento nacional sobre regulação de IA no setor público.</p>
+        <a class="read-more" href="eventos/ia-e-politicas.html">Leia mais &raquo;</a>
+      </div>
+      <div class="news-card">
+        <h3>Nota Técnica sobre Transparência</h3>
+        <p>Propostas para garantir algoritmos auditáveis no governo.</p>
+        <a class="read-more" href="notas/nota-transparencia.html">Leia mais &raquo;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Rodapé aprimorado -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>© 2025 Núcleo de Estudos em Inteligência Artificial e Sociedade</p>
+      <nav class="footer-nav">
+        <a href="#">Contato</a>
+        <a href="#">Acessibilidade</a>
+        <a href="#">Termos de Uso</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-container').innerHTML = html;
+      });
+
+    const posts = [
       {
-        label: 'Sobre',
-        items: ['Quem somos', 'Institucional', 'Pesquisadores', 'Associados']
+        img: "img/carrossel1.jpg",
+        title: "Relatório sobre IA e Sociedade",
+        subtitle: "Análise dos impactos sociais da IA no Brasil",
+        link: "noticias/relatorio-ia.html"
       },
       {
-        label: 'Publicações',
-        items: ['Notas de Política Econômica', 'Working Papers', 'PNAD']
+        img: "img/carrossel2.jpg",
+        title: "Publicação Internacional",
+        subtitle: "Artigo aceito na Journal of AI Policy",
+        link: "publicacoes/artigo-journal.html"
       },
       {
-        label: 'Códigos & Dados',
-        items: ['BRASMOD', 'GitHub']
+        img: "img/carrossel3.jpg",
+        title: "Evento: IA e Políticas Públicas",
+        subtitle: "Seminário nacional em Belo Horizonte",
+        link: "eventos/ia-e-politicas.html"
       },
       {
-        label: 'Pesquisa',
-        items: ['Linhas de pesquisa', 'Projetos', 'Palavras-chave']
+        img: "img/carrossel4.jpg",
+        title: "Nota Técnica: Transparência Algorítmica",
+        subtitle: "Proposta de regulação para algoritmos públicos",
+        link: "notas/nota-transparencia.html"
       },
       {
-        label: 'Contato',
-        items: []  // <-- novo item de menu
+        img: "img/carrossel5.jpg",
+        title: "Chamada para Pesquisadores",
+        subtitle: "Venha integrar nosso núcleo de pesquisa",
+        link: "sobre/quem-somos.html"
       }
     ];
 
+    const slideContainer = document.getElementById('carousel-slide');
+    let currentIndex = 0;
 
-    function App() {
-      return (
-        <>
-          <header className="app-header">
-            <h1 className="app-title">
-              Centro de Pesquisa em I.A. no Brasil
-            </h1>
-            <nav>
-              <ul className="menu">
-                {menuConfig.map(section => (
-                  <li key={section.label} className="menu-item">
-                    <a href="#" className="menu-link">
-                      {section.label} ↓
-                    </a>
-                    <ul className="submenu">
-                      {section.items.map(sub => (
-                        <li key={sub}>
-                          <a href="#">{sub}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </header>
-
-          <main>
-            {/* Aqui você pode adicionar conteúdo principal: apresentações, projetos, etc. */}
-          </main>
-
-          <footer>
-            © 2025 Centro de Pesquisa em I.A. no Brasil
-          </footer>
-        </>
-      );
+    function renderSlides() {
+      slideContainer.innerHTML = posts.map(post => `
+        <a href="${post.link}" class="slide" style="background-image: url('${post.img}')">
+          <div class="slide-caption">
+            <h2>${post.title}</h2>
+            <p>${post.subtitle}</p>
+          </div>
+        </a>
+      `).join('');
     }
 
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    function updateSlide(step) {
+      const total = posts.length;
+      currentIndex = (currentIndex + step + total) % total;
+      const offset = -currentIndex * 100;
+      slideContainer.style.transform = `translateX(${offset}%)`;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderSlides();
+      document.querySelector('.carousel-btn.left').addEventListener('click', () => updateSlide(-1));
+      document.querySelector('.carousel-btn.right').addEventListener('click', () => updateSlide(1));
+    });
   </script>
 </body>
 
