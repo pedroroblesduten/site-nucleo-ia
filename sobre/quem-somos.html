@@ -3,28 +3,110 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Quem Somos</title>
+    <title>Quem Somos – Núcleo de Estudos em Inteligência Artificial e Sociedade</title>
     <link rel="stylesheet" href="../estilos.css">
 </head>
 
 <body>
     <div id="header-container"></div>
 
-    <main>
-        <h1>Hello World - Quem Somos</h1>
+    <main class="quem-somos-page">
+
+        <!-- Título da Página -->
+        <section class="intro-section">
+            <h1>Quem Somos</h1>
+            <div class="section-divider"></div>
+        </section>
+
+
+        <!-- Texto principal -->
+        <section class="content-section">
+
+            <p>O Núcleo de Planos em Inteligência Artificial é uma iniciativa interdisciplinar vinculada ao Instituto de
+                Ciências Exatas da Universidade Federal de Minas Gerais (UFMG), dedicada a estudar e propor diretrizes
+                estratégicas para o uso responsável, ético e socialmente orientado da inteligência artificial no Brasil.
+                Nosso foco central é investigar como as tecnologias de IA podem ser aplicadas para enfrentar desafios
+                complexos nas áreas social, ambiental, econômica e urbana, com atenção especial às especificidades da
+                cidade de Belo Horizonte, do estado de Minas Gerais e das diferentes realidades brasileiras. Buscamos
+                construir uma ponte entre a produção científica, as demandas da sociedade e as necessidades de
+                formulação de políticas públicas voltando ao bem comum.</p>
+
+            <p>Além da produção de planos estratégicos, o Núcleo também se dedica ativamente à elaboração de artigos de
+                opinião, que visam qualificar e ampliar o debate público sobre os impactos da inteligência artificial.
+                Esses textos abordam temas emergentes como regulação e governança de algoritmos, impactos trabalhistas
+                da automação, inclusão digital, privacidade de dados e justiça algorítmica. Por meio desses artigos,
+                buscamos oferecer análises críticas, interpretações fundamentadas e posicionamentos propositivos, sempre
+                com base no diálogo interdisciplinar e no compromisso com o interesse público.</p>
+
+            <p>Inspirados no conceito dos Planos Diretores Urbanos e em outras metodologias de planejamento estratégico,
+                elaboramos documentos analíticos, técnicos e opinativos — os Planos Diretores Temáticos em Inteligência
+                Artificial. Cada plano parte do mapeamento detalhado de um tema de alta relevância pública,
+                identificando os principais desafios, oportunidades tecnológicas e lacunas de dados. A partir dessa
+                análise, o Núcleo propõe uma agenda estruturada de ação, com diretrizes concretas para orientar o avanço
+                da pesquisa científica, o desenvolvimento tecnológico e a formulação de políticas públicas no tema
+                abordado. Nosso objetivo é fornecer um roteiro claro e fundamentado para que diferentes atores —
+                gestores públicos, pesquisadores, empresas e sociedade civil — possam atuar de forma coordenada e
+                estratégica no uso da IA para o interesse coletivo.</p>
+
+            <p>Cientes da complexidade e da dinamicidade que envolvem o campo da inteligência artificial, entendemos
+                nossos documentos e posicionamentos como pontos de partida para um diálogo mais amplo e plural. Nosso
+                compromisso é abrir caminhos para o debate público qualificado, promovendo a construção conjunta de
+                soluções e o fortalecimento de espaços de reflexão crítica sobre os rumos da tecnologia e seu impacto na
+                sociedade.</p>
+
+        </section>
+
+        <!-- Novos Cards -->
+        <section class="highlight-grid">
+
+            <div class="highlight-box">
+                <h3>Artigos de Opinião</h3>
+                <p>• Análises críticas sobre IA e sociedade.</p>
+                <p>• Posicionamentos sobre regulação e governança algorítmica.</p>
+                <p>• Reflexões sobre impactos sociais da automação.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Planos de IA</h3>
+                <p>• Documentos estratégicos temáticos.</p>
+                <p>• Diretrizes para políticas públicas baseadas em evidências.</p>
+                <p>• Propostas para avanços tecnológicos e inclusão social.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Debate Público</h3>
+                <p>• Fomento ao diálogo entre academia, governo e sociedade civil.</p>
+                <p>• Promoção de eventos e seminários.</p>
+                <p>• Construção de soluções coletivas sobre os rumos da IA.</p>
+            </div>
+
+        </section>
+
     </main>
 
-    <footer>
-        © 2025 Núcleo de Estudos em Inteligência Artificial e Sociedade
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 Núcleo de Estudos em Inteligência Artificial e Sociedade</p>
+            <nav class="footer-nav">
+                <a href="#">Contato</a>
+                <a href="#">Acessibilidade</a>
+                <a href="#">Termos de Uso</a>
+            </nav>
+        </div>
     </footer>
 
+    <!-- Inclusão dinâmica do header -->
     <script>
         fetch('../header.html')
             .then(res => res.text())
             .then(html => {
                 document.getElementById('header-container').innerHTML = html;
+                const currentLink = document.querySelector('a[href="sobre/quem-somos.html"]');
+                if (currentLink) currentLink.classList.add('active');
             });
     </script>
+
 </body>
 
 </html>
