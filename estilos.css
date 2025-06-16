@@ -640,3 +640,120 @@ a.menu-link {
         transform: translateY(0);
     }
 }
+
+/* ---------------------------
+   PÁGINA PESQUISADORES
+   --------------------------- */
+.pesquisadores-section {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+}
+
+.page-title {
+    font-size: 2.2rem;
+    color: #003b72;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: .6rem;
+}
+
+.title-divider {
+    width: 100px;
+    height: 6px;
+    background: #003f5c;
+    margin-bottom: 2.5rem;
+    border-radius: 2px;
+}
+
+/* Grid responsivo – 3 colunas desktop, 2 tablets, 1 mobile */
+.pesquisadores-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(1, 1fr);
+    /* Mobile padrão: 1 por linha */
+}
+
+@media (min-width: 600px) {
+    .pesquisadores-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* Tablets: 2 por linha */
+    }
+}
+
+@media (min-width: 900px) {
+    .pesquisadores-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* Desktop: 3 por linha */
+    }
+}
+
+
+.pesquisador-card img {
+    width: 100%;
+    max-width: 220px;
+    /* Limita o tamanho da imagem */
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 6px;
+    filter: grayscale(1);
+    margin-bottom: 1rem;
+    align-self: center;
+}
+
+/* Nome do pesquisador */
+.pesquisador-card h3 {
+    font-size: 1.15rem;
+    color: #003b72;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    text-align: center;
+}
+
+/* Cargo e Instituição */
+.pesquisador-card .cargo,
+.pesquisador-card .instituicao {
+    font-size: 0.95rem;
+    color: #444;
+    text-align: center;
+    margin-bottom: 0.2rem;
+}
+
+/* Email */
+.pesquisador-card .contato {
+    font-size: 0.9rem;
+    color: #003f5c;
+    text-align: center;
+    margin-bottom: 0.3rem;
+}
+
+/* Link Lattes */
+.lattes-link {
+    font-size: 0.9rem;
+    color: #005b96;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.lattes-link:hover {
+    color: #003f6b;
+}
+
+/* Ajusta layout interno dos cards */
+.pesquisador-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pesquisador-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}

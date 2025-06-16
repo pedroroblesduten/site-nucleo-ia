@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pesquisadores – Núcleo de Estudos em I.A. e Sociedade</title>
+    <link rel="stylesheet" href="../estilos.css" />
+</head>
+
+<body>
+    <!-- Header carregado via fetch para manter consistência -->
+    <div id="header-container"></div>
+
+    <main class="pesquisadores-section">
+
+        <!-- Título da página -->
+        <h2 class="page-title">Pesquisadores</h2>
+        <div class="title-divider"></div>
+
+        <!-- Grid de pesquisadores -->
+        <div class="pesquisadores-grid">
+
+            <!-- ---------- Linha 1 ---------- -->
+            <div class="pesquisador-card">
+                <img src="../img/icon_pessoa.png" alt="Foto do pesquisador 1">
+                <h3>Ana Costa</h3>
+                <p class="cargo">Pesquisadora</p>
+                <p class="instituicao">Universidade Alpha</p>
+                <p class="contato">ana.costa@example.com</p>
+                <a href="#" class="lattes-link">Currículo Lattes</a>
+            </div>
+
+            <div class="pesquisador-card">
+                <img src="../img/icon_pessoa.png" alt="Foto do pesquisador 2">
+                <h3>Bruno Silva</h3>
+                <p class="cargo">Pesquisador</p>
+                <p class="instituicao">Instituto Beta</p>
+                <p class="contato">bruno.silva@example.com</p>
+                <a href="#" class="lattes-link">Currículo Lattes</a>
+            </div>
+
+            <div class="pesquisador-card">
+                <img src="../img/icon_pessoa.png" alt="Foto do pesquisador 3">
+                <h3>Carla Ramos</h3>
+                <p class="cargo">Pesquisadora</p>
+                <p class="instituicao">Universidade Gama</p>
+                <p class="contato">carla.ramos@example.com</p>
+                <a href="#" class="lattes-link">Currículo Lattes</a>
+            </div>
+
+            <!-- ---------- Linha 2 ---------- -->
+            <div class="pesquisador-card">
+                <img src="../img/icon_pessoa.png" alt="Foto do pesquisador 4">
+                <h3>Diego Nunes</h3>
+                <p class="cargo">Pesquisador</p>
+                <p class="instituicao">Centro Delta</p>
+                <p class="contato">diego.nunes@example.com</p>
+                <a href="#" class="lattes-link">Currículo Lattes</a>
+            </div>
+
+            <div class="pesquisador-card">
+                <img src="../img/icon_pessoa.png" alt="Foto do pesquisador 5">
+                <h3>Elisa Martins</h3>
+                <p class="cargo">Pesquisadora</p>
+                <p class="instituicao">Universidade Épsilon</p>
+                <p class="contato">elisa.martins@example.com</p>
+                <a href="#" class="lattes-link">Currículo Lattes</a>
+            </div>
+
+            <div class="pesquisador-card">
+                <img src="../img/icon_pessoa.png" alt="Foto do pesquisador 6">
+                <h3>Felipe Rocha</h3>
+                <p class="cargo">Pesquisador</p>
+                <p class="instituicao">Instituto Zeta</p>
+                <p class="contato">felipe.rocha@example.com</p>
+                <a href="#" class="lattes-link">Currículo Lattes</a>
+            </div>
+
+            <!-- ---------- Linha 3 ---------- -->
+            <div class="pesquisador-card">
+                <img src="../img/icon_pessoa.png" alt="Foto do pesquisador 7">
+                <h3>Giovana Almeida</h3>
+                <p class="cargo">Pesquisadora</p>
+                <p class="instituicao">Universidade Eta</p>
+                <p class="contato">giovana.almeida@example.com</p>
+                <a href="#" class="lattes-link">Currículo Lattes</a>
+            </div>
+
+            <div class="pesquisador-card">
+                <img src="../img/icon_pessoa.png" alt="Foto do pesquisador 8">
+                <h3>Henrique Torres</h3>
+                <p class="cargo">Pesquisador</p>
+                <p class="instituicao">Centro Theta</p>
+                <p class="contato">henrique.torres@example.com</p>
+                <a href="#" class="lattes-link">Currículo Lattes</a>
+            </div>
+
+            <div class="pesquisador-card">
+                <img src="../img/icon_pessoa.png" alt="Foto do pesquisador 9">
+                <h3>Isabela Pires</h3>
+                <p class="cargo">Pesquisadora</p>
+                <p class="instituicao">Universidade Iota</p>
+                <p class="contato">isabela.pires@example.com</p>
+                <a href="#" class="lattes-link">Currículo Lattes</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Rodapé padrão -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 Núcleo de Estudos em Inteligência Artificial e Sociedade</p>
+            <nav class="footer-nav">
+                <a href="#">Contato</a>
+                <a href="#">Acessibilidade</a>
+                <a href="#">Termos de Uso</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Carrega header -->
+    <script>
+        fetch('../header.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+                const link = document.querySelector('a[href="/sobre/pesquisadores.html"]');
+                if (link) link.classList.add('active');
+            });
+    </script>
+</body>
+
+</html>
