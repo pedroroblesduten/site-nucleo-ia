@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Artigo de Opinião – Visualização</title>
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <main class="pdf-viewer">
+        <h2 id="titulo-artigo" class="page-title">Artigo de Opinião</h2>
+        <p id="data-artigo" class="data-artigo"></p>
+        <p id="autores-artigo" class="autores-artigo"></p>
+        <div class="title-divider"></div>
+
+        <!-- Botão de voltar -->
+        <div class="back-button-container espacamento-extra">
+            <a href="artigo-de-opiniao.html" class="back-button">← Voltar para lista de artigos</a>
+        </div>
+
+        <!-- Área de visualização do PDF -->
+        <div id="pdf-container" class="pdf-frame">
+            <p>Carregando artigo...</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Núcleo de Estudos em Inteligência Artificial e Sociedade</p>
+    </footer>
+
+    <script>
+        // Carrega o header
+        fetch('../header.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+            });
+
+        const params = new URLSearchParams(window.location.search);
+        const file = params.get('file');
+
+        // Função para formatar data
+        function formataData(iso) {
+            const [a, m, d] = iso.split('-').map(Number);
+            const data = new Date(a, m - 1, d);
+            return data.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            });
+        }
+
+        // Busca título, data e autores
+        fetch('artigos.json')
+            .then(response => response.json())
+            .then(artigos => {
+                const artigo = artigos.find(a => a.arquivo === file);
+
+                if (artigo) {
+                    document.getElementById('titulo-artigo').textContent = artigo.titulo;
+                    document.getElementById('data-artigo').textContent = formataData(artigo.data);
+                    document.getElementById('autores-artigo').textContent = `Por ${artigo.autores.join(', ')}`;
+
+                    document.getElementById('pdf-container').innerHTML = `
+                        <embed src="../artigos/${file}" type="application/pdf" width="100%" height="850px" />
+                    `;
+                } else {
+                    document.getElementById('pdf-container').innerHTML = '<p>Artigo não encontrado.</p>';
+                }
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Artigos de Opinião – Núcleo de Estudos em I.A. e Sociedade</title>
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <main class="artigos-lista">
+        <h2 class="page-title">Artigos de Opinião</h2>
+        <div class="title-divider"></div>
+
+        <!-- Contêiner da lista -->
+        <div id="lista-artigos" class="lista-artigos-container"></div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Núcleo de Estudos em Inteligência Artificial e Sociedade</p>
+    </footer>
+
+    <script>
+        /* Carrega o header */
+        fetch('../header.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+                const link = document.querySelector('a[href="/publicacoes/artigo-de-opiniao.html"]');
+                if (link) link.classList.add('active');
+            });
+
+        /* Carrega e exibe os artigos */
+        fetch('./artigos.json')
+            .then(response => response.json())
+            .then(artigos => {
+                const lista = document.getElementById('lista-artigos');
+                artigos.sort((a, b) => new Date(b.data) - new Date(a.data));  // Mais recentes primeiro
+
+                artigos.forEach(artigo => {
+                    const card = document.createElement('article');
+                    card.className = 'artigo-card';
+
+                    const autoresTexto = artigo.autores.length > 0 ? `Por ${artigo.autores.join(', ')}` : '';
+
+                    card.innerHTML = `
+                        <div class="titulo-data-wrapper">
+                            <h3 class="artigo-titulo">
+                                <a href="visualizar-artigo.html?file=${encodeURIComponent(artigo.arquivo)}">${artigo.titulo}</a>
+                            </h3>
+                            <p class="artigo-data">${formataData(artigo.data)}</p>
+                        </div>
+                        <p class="artigo-autores">${autoresTexto}</p>
+                        <p class="artigo-resumo">${artigo.resumo}</p>
+                    `;
+
+
+                    lista.appendChild(card);
+                });
+            });
+
+        /* Converte data: AAAA-MM-DD → 16 de junho de 2025 */
+        function formataData(iso) {
+            const [a, m, d] = iso.split('-').map(Number);
+            const data = new Date(a, m - 1, d);
+            return data.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            });
+        }
+    </script>
+</body>
+
+</html>

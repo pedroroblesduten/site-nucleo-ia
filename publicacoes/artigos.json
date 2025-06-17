@@ -1,0 +1,32 @@
+[
+    {
+        "arquivo": "artigo1_16_06_2025.pdf",
+        "titulo": "Impactos Sociais da IA no Brasil",
+        "data": "2025-06-16",
+        "autores": [
+            "Maria Silva",
+            "João Souza"
+        ],
+        "resumo": "Análise dos efeitos sociais da inteligência artificial em diferentes setores da sociedade brasileira."
+    },
+    {
+        "arquivo": "artigo2_10_05_2025.pdf",
+        "titulo": "Regulação Algorítmica: Propostas",
+        "data": "2025-05-10",
+        "autores": [
+            "Lucas Almeida"
+        ],
+        "resumo": "Propostas e recomendações para a regulação ética e transparente de algoritmos no setor público e privado."
+    },
+    {
+        "arquivo": "artigo3_01_04_2025.pdf",
+        "titulo": "Inclusão Digital e Justiça Social",
+        "data": "2025-04-01",
+        "autores": [
+            "Fernanda Costa",
+            "Rafael Oliveira",
+            "Ana Pereira"
+        ],
+        "resumo": "Discussão sobre os desafios e estratégias para promover a inclusão digital como ferramenta de justiça social."
+    }
+]

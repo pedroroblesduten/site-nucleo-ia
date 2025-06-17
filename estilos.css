@@ -757,3 +757,148 @@ a.menu-link {
     transform: translateY(-4px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
+
+/* LISTA DE ARTIGOS DE OPINIÃO */
+.lista-artigos-container {
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* um artigo por linha */
+}
+
+.artigo-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 1.8rem 2rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.artigo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
+}
+
+.artigo-titulo {
+    font-size: 1.3rem;
+    margin-bottom: .4rem;
+    color: #003b72;
+    font-weight: 600;
+}
+
+.artigo-titulo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.artigo-titulo a:hover {
+    text-decoration: underline;
+}
+
+.artigo-data {
+    font-size: 1.05rem;
+    color: #555;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+
+.artigo-resumo {
+    font-size: 1.05rem;
+    color: #333;
+    line-height: 1.7;
+}
+
+.artigo-autores {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.titulo-data-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Para responsividade em telas pequenas */
+    margin-bottom: 0.5rem;
+}
+
+.titulo-data-wrapper .artigo-titulo {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #003b72;
+    font-weight: 600;
+}
+
+.titulo-data-wrapper .artigo-titulo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.titulo-data-wrapper .artigo-titulo a:hover {
+    text-decoration: underline;
+}
+
+.titulo-data-wrapper .artigo-data {
+    font-size: 1.05rem;
+    color: #555;
+    white-space: nowrap;
+    /* Para evitar quebra feia da data */
+    margin: 0;
+}
+
+
+
+
+.pdf-viewer {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.pdf-frame {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #f9f9f9;
+    padding: 0.5rem;
+}
+
+.back-button-container {
+    margin-top: 1rem;
+}
+
+.back-button-container.espacamento-extra {
+    margin-bottom: 2.5rem;
+    /* Espaço extra antes do PDF */
+}
+
+.back-button {
+    text-decoration: none;
+    color: #005b96;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.back-button:hover {
+    color: #003f6b;
+    text-decoration: underline;
+}
+
+.data-artigo {
+    font-size: 1.3rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.autores-artigo {
+    font-size: 1rem;
+    color: #444;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
