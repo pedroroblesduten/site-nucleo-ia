@@ -955,3 +955,74 @@ a.menu-link {
     white-space: nowrap;
     margin-left: 1rem;
 }
+
+/* ============================
+   LISTA DE PLANOS DE IA
+   ============================ */
+.lista-planos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+}
+
+.plano-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.plano-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
+}
+
+.plano-img {
+    width: 100%;
+    height: 180px;
+    /* ajustável */
+    object-fit: cover;
+}
+
+.plano-titulo-link {
+    text-decoration: none;
+}
+
+.plano-titulo {
+    font-size: 1.25rem;
+    color: #003b72;
+    font-weight: 600;
+    margin: 1rem 1rem 0.4rem 1rem;
+}
+
+.plano-titulo-link:hover .plano-titulo {
+    text-decoration: underline;
+}
+
+.plano-meta {
+    margin: 0 1rem 1rem 1rem;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.plano-resumo {
+    padding: 0 1rem 1.4rem 1rem;
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.55;
+}
+
+.plano-resumo {
+    background: #f5f8fc;
+    /* Azul muito claro, tom institucional */
+    padding: 1rem 1.2rem;
+    font-size: 1.02rem;
+    color: #333;
+    line-height: 1.65;
+    text-align: justify;
+    text-justify: inter-word;
+    margin: 1rem 1rem 1.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0.5px rgba(0, 0, 0, 0.05);
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Planos de IA – Núcleo de Estudos em I.A. e Sociedade</title>
+    <link rel="stylesheet" href="../estilos.css" />
+</head>
+
+<body>
+    <!-- Header carregado dinamicamente -->
+    <div id="header-container"></div>
+
+    <main class="artigos-lista">
+        <h2 class="page-title">Planos de IA</h2>
+        <div class="title-divider"></div>
+
+        <!-- Barra de busca -->
+        <div class="search-wrapper">
+            <input id="search-input" type="text" placeholder="Buscar planos por título, autor ou tema…" />
+        </div>
+
+        <!-- Lista de planos em grid -->
+        <div id="lista-planos" class="lista-planos-container"></div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Núcleo de Estudos em Inteligência Artificial e Sociedade</p>
+    </footer>
+
+    <script>
+        /* --------------- Header --------------- */
+        fetch('../header.html')
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+                /* destaca item Planos → ajuste se já houver link real no header */
+                const link = document.querySelector('a[href="/publicacoes/planos-de-ia.html"]');
+                if (link) link.classList.add('active');
+            });
+
+        /* --------- Utilidades --------- */
+        const lista = document.getElementById('lista-planos');
+        const inputBusca = document.getElementById('search-input');
+        let TODOS_PLANOS = [];
+
+        const normaliza = txt => txt.normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase();
+
+        const fmtData = iso => {
+            const [a, m, d] = iso.split('-').map(Number);
+            return new Date(a, m - 1, d).toLocaleDateString('pt-BR', {
+                day: '2-digit', month: 'long', year: 'numeric'
+            });
+        };
+
+        /* --------- Renderização --------- */
+        function renderiza(arr) {
+            lista.innerHTML = '';
+            if (!arr.length) {
+                lista.innerHTML = '<p>Nenhum plano encontrado.</p>';
+                return;
+            }
+
+            arr.forEach(p => {
+                const card = document.createElement('article');
+                card.className = 'plano-card';
+
+                card.innerHTML = `
+                    <a href="visualizar-plano.html?file=${encodeURIComponent(p.arquivo)}"
+                       class="plano-titulo-link">
+                        <h3 class="plano-titulo">${p.titulo}</h3>
+                    </a>
+                    <p class="plano-meta">${fmtData(p.data)} — ${p.autores.join(', ')}</p>
+
+                    <img src="../img/project.png" alt="Imagem ilustrativa"
+                         class="plano-img"/>
+
+                    <p class="plano-resumo">${p.resumo}</p>
+                `;
+                lista.appendChild(card);
+            });
+        }
+
+        /* --------- Carrega JSON --------- */
+        fetch('./planos.json')
+            .then(r => r.json())
+            .then(json => {
+                TODOS_PLANOS = json.sort((a, b) => new Date(b.data) - new Date(a.data));
+                renderiza(TODOS_PLANOS);
+            });
+
+        /* --------- Busca dinâmica --------- */
+        inputBusca.addEventListener('input', () => {
+            const termo = normaliza(inputBusca.value.trim());
+            if (!termo) return renderiza(TODOS_PLANOS);
+
+            const tokens = termo.split(/\s+/);
+            const filtrados = TODOS_PLANOS.filter(p => {
+                const alvo = normaliza(
+                    `${p.titulo} ${p.autores.join(' ')} ${p.resumo}`
+                );
+                return tokens.every(tk => alvo.includes(tk));
+            });
+            renderiza(filtrados);
+        });
+    </script>
+</body>
+
+</html>

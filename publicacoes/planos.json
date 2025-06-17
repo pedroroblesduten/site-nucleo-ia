@@ -1,0 +1,32 @@
+[
+    {
+        "titulo": "Plano Nacional de Inteligência Artificial para o Setor Público",
+        "autores": [
+            "Maria Souza",
+            "João Pereira"
+        ],
+        "data": "2025-05-20",
+        "resumo": "Diretrizes estratégicas para orientar a adoção de soluções de IA em órgãos governamentais, com foco em transparência, inclusão e eficiência administrativa.",
+        "arquivo": "artigo1_16_06_2025.pdf"
+    },
+    {
+        "titulo": "Estratégia de Inclusão Digital e Acesso à IA",
+        "autores": [
+            "Ana Silva",
+            "Carlos Lima"
+        ],
+        "data": "2025-04-12",
+        "resumo": "Propostas de políticas públicas para reduzir desigualdades digitais e ampliar o acesso a tecnologias de inteligência artificial em comunidades vulneráveis.",
+        "arquivo": "inclusao-digital.pdf"
+    },
+    {
+        "titulo": "Regulação Algorítmica e Governança de Dados",
+        "autores": [
+            "Fernanda Costa",
+            "Roberto Almeida"
+        ],
+        "data": "2025-03-05",
+        "resumo": "Recomendações para garantir auditabilidade, proteção de dados e prestação de contas em sistemas automatizados usados por instituições públicas.",
+        "arquivo": "regulacao-governanca.pdf"
+    }
+]

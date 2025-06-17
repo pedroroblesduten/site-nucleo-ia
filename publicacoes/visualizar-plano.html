@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Plano de IA – Visualização</title>
+    <link rel="stylesheet" href="../estilos.css">
+    <style>
+        /* Estilo exclusivo para a visualização de planos */
+
+        .pdf-viewer h2.page-title {
+            color: #002b5c;
+            font-weight: 600;
+            font-size: 2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .title-divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #003f5c, #2f4b7c);
+            margin: 1rem auto 2rem auto;
+            border-radius: 2px;
+        }
+
+        .data-artigo,
+        .autores-artigo {
+            text-align: center;
+            color: #555;
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .pdf-frame {
+            background: #f9fbfd;
+            border: 1px solid #c4d3e0;
+            border-radius: 8px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+            padding: 0.8rem;
+        }
+
+        .back-button {
+            color: #005b96;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: #003f6b;
+            text-decoration: underline;
+        }
+
+        .back-button-container {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <main class="pdf-viewer">
+        <h2 id="titulo-plano" class="page-title">Plano de IA</h2>
+        <p id="data-plano" class="data-artigo"></p>
+        <p id="autores-plano" class="autores-artigo"></p>
+        <div class="title-divider"></div>
+
+        <!-- Botão de voltar (alinhado à esquerda) -->
+        <div class="back-button-container espacamento-extra">
+            <a href="planos-de-ia.html" class="back-button">← Voltar para lista de planos</a>
+        </div>
+
+        <!-- Área de visualização do PDF -->
+        <div id="pdf-container" class="pdf-frame">
+            <p>Carregando plano...</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Núcleo de Estudos em Inteligência Artificial e Sociedade</p>
+    </footer>
+
+    <script>
+        fetch('../header.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+            });
+
+        const params = new URLSearchParams(window.location.search);
+        const file = params.get('file');
+
+        function formataData(iso) {
+            const [a, m, d] = iso.split('-').map(Number);
+            const data = new Date(a, m - 1, d);
+            return data.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            });
+        }
+
+        fetch('planos.json')
+            .then(response => response.json())
+            .then(planos => {
+                const plano = planos.find(p => p.arquivo === file);
+
+                if (plano) {
+                    document.getElementById('titulo-plano').textContent = plano.titulo;
+                    document.getElementById('data-plano').textContent = formataData(plano.data);
+                    document.getElementById('autores-plano').textContent = `Por ${plano.autores.join(', ')}`;
+
+                    document.getElementById('pdf-container').innerHTML = `
+                        <embed src="../planos/${file}" type="application/pdf" width="100%" height="850px" />
+                    `;
+                } else {
+                    document.getElementById('pdf-container').innerHTML = '<p>Plano não encontrado.</p>';
+                }
+            });
+    </script>
+</body>
+
+</html>
