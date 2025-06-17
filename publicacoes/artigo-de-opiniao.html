@@ -15,6 +15,11 @@
         <h2 class="page-title">Artigos de Opinião</h2>
         <div class="title-divider"></div>
 
+        <!-- Barra de busca -->
+        <div class="search-wrapper">
+            <input id="search-input" type="text" placeholder="Buscar artigos por título, autor ou tema…" />
+        </div>
+
         <!-- Contêiner da lista -->
         <div id="lista-artigos" class="lista-artigos-container"></div>
     </main>
@@ -24,7 +29,7 @@
     </footer>
 
     <script>
-        /* Carrega o header */
+        /* Carrega header */
         fetch('../header.html')
             .then(res => res.text())
             .then(html => {
@@ -33,36 +38,16 @@
                 if (link) link.classList.add('active');
             });
 
-        /* Carrega e exibe os artigos */
-        fetch('./artigos.json')
-            .then(response => response.json())
-            .then(artigos => {
-                const lista = document.getElementById('lista-artigos');
-                artigos.sort((a, b) => new Date(b.data) - new Date(a.data));  // Mais recentes primeiro
+        let TODOS_ARTIGOS = [];
+        const lista = document.getElementById('lista-artigos');
+        const inputBusca = document.getElementById('search-input');
 
-                artigos.forEach(artigo => {
-                    const card = document.createElement('article');
-                    card.className = 'artigo-card';
+        /* Função de normalização para ignorar acentos */
+        function normalizaTexto(texto) {
+            return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        }
 
-                    const autoresTexto = artigo.autores.length > 0 ? `Por ${artigo.autores.join(', ')}` : '';
-
-                    card.innerHTML = `
-                        <div class="titulo-data-wrapper">
-                            <h3 class="artigo-titulo">
-                                <a href="visualizar-artigo.html?file=${encodeURIComponent(artigo.arquivo)}">${artigo.titulo}</a>
-                            </h3>
-                            <p class="artigo-data">${formataData(artigo.data)}</p>
-                        </div>
-                        <p class="artigo-autores">${autoresTexto}</p>
-                        <p class="artigo-resumo">${artigo.resumo}</p>
-                    `;
-
-
-                    lista.appendChild(card);
-                });
-            });
-
-        /* Converte data: AAAA-MM-DD → 16 de junho de 2025 */
+        /* Converte data YYYY-MM-DD → 16 de junho de 2025 */
         function formataData(iso) {
             const [a, m, d] = iso.split('-').map(Number);
             const data = new Date(a, m - 1, d);
@@ -72,6 +57,62 @@
                 year: 'numeric'
             });
         }
+
+        /* Monta os cards de artigos */
+        function renderizaLista(arr) {
+            lista.innerHTML = '';
+            if (arr.length === 0) {
+                lista.innerHTML = '<p>Nenhum artigo encontrado.</p>';
+                return;
+            }
+
+            arr.forEach(artigo => {
+                const card = document.createElement('article');
+                card.className = 'artigo-card';
+
+                const autoresTexto = artigo.autores.length ? `Por ${artigo.autores.join(', ')}` : '';
+
+                card.innerHTML = `
+                    <div class="titulo-data-wrapper">
+                        <h3 class="artigo-titulo">
+                            <a href="visualizar-artigo.html?file=${encodeURIComponent(artigo.arquivo)}">${artigo.titulo}</a>
+                        </h3>
+                        <p class="artigo-data">${formataData(artigo.data)}</p>
+                    </div>
+                    <p class="artigo-autores">${autoresTexto}</p>
+                    <p class="artigo-resumo">${artigo.resumo}</p>
+                `;
+                lista.appendChild(card);
+            });
+        }
+
+        /* Carrega JSON */
+        fetch('./artigos.json')
+            .then(r => r.json())
+            .then(json => {
+                TODOS_ARTIGOS = json.sort((a, b) => new Date(b.data) - new Date(a.data));
+                renderizaLista(TODOS_ARTIGOS);
+            });
+
+        /* Filtragem ao digitar */
+        inputBusca.addEventListener('input', () => {
+            const termo = normalizaTexto(inputBusca.value.trim());
+            if (termo === '') {
+                renderizaLista(TODOS_ARTIGOS);
+                return;
+            }
+
+            const tokens = termo.split(/\s+/);
+
+            const filtrados = TODOS_ARTIGOS.filter(artigo => {
+                const textoPesquisa = normalizaTexto(
+                    `${artigo.titulo} ${artigo.autores.join(' ')} ${artigo.resumo}`
+                );
+                return tokens.every(tok => textoPesquisa.includes(tok));
+            });
+
+            renderizaLista(filtrados);
+        });
     </script>
 </body>
 

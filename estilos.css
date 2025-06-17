@@ -902,3 +902,56 @@ a.menu-link {
     font-style: italic;
     margin-bottom: 1rem;
 }
+
+/* === Barra de busca === */
+.search-wrapper {
+    max-width: 900px;
+    margin: 0 auto 2rem auto;
+}
+
+#search-input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    border: 1px solid #c4cbd4;
+    border-radius: 8px;
+    transition: border-color .25s ease;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: #005b96;
+    box-shadow: 0 0 0 3px rgba(0, 91, 150, 0.15);
+}
+
+/* Ajustes para título + data na mesma linha */
+.titulo-data-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: .6rem;
+}
+
+.titulo-data-wrapper .artigo-titulo {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #003b72;
+    font-weight: 600;
+}
+
+.titulo-data-wrapper .artigo-titulo a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.titulo-data-wrapper .artigo-titulo a:hover {
+    text-decoration: underline;
+}
+
+.titulo-data-wrapper .artigo-data {
+    font-size: 1.05rem;
+    color: #555;
+    white-space: nowrap;
+    margin-left: 1rem;
+}
